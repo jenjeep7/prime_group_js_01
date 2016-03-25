@@ -1,9 +1,19 @@
-var atticus = ["Atticus", "2405", "47000", 3];
-var jem = ["Jem", "62347", "63500", 4];
-var boo = ["Boo", "11435", "54000", 3];
-var scout = ["Scout", "6243", "74750", 5];
+function EmployeeObj(firstName, empNum, salary, rating) {
+  this.firstName = firstName;
+  this.empNum = empNum;
+  this.salary = salary;
+  this.rating = rating;
+}
+
+
+var atticus = new EmployeeObj("Atticus", "2405", "47000", 3);
+var jem = new EmployeeObj("Jem", "62347", "63500", 4);
+var boo = new EmployeeObj("Boo", "11435", "54000", 3);
+var scout = new EmployeeObj("Scout", "6243", "74750", 5);
+
 
 var employees = [atticus, jem, boo, scout];
+
 
 for(var i = 0; i<employees.length; i++) {
   console.log(calculateBonus(employees[i]));
@@ -11,11 +21,14 @@ for(var i = 0; i<employees.length; i++) {
 
 
 function calculateBonus(employee) {
+  //if things come in as a string they should have been converted here at the beginning
+
   var bonus = 0;
-  var empName = employee[0];
-  var empNumber = employee[1];
-  var salary = parseInt(employee[2]);
-  var rating = employee[3];
+  var empName = employee.firstName;
+
+  var empNumber = employee.empNum;
+  var salary = parseInt(employee.salary);
+  var rating = employee.rating;
 
 
 
@@ -41,13 +54,13 @@ if(salary > 65000 && bonus>0) {
 if(bonus>13) {
   bonus = 13;
 }
-var result = [];
+var result = {};
 
-result.push(empName);
-result.push(bonus.toString()+"%");
+result.name = (empName);
+result.bonus = (bonus.toString()+"%");
 var percentBonus = bonus/100;
-result.push("$" + ((salary * percentBonus) + salary).toString());
-result.push("$" + (Math.round(salary * percentBonus).toString()));
+result.salaryPlusBonus = ("$" + ((salary * percentBonus) + salary).toString());
+result.bonus = ("$" + (Math.round(salary * percentBonus).toString()));
 return result;
 
 }
